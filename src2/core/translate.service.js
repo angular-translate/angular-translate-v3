@@ -8,7 +8,7 @@ import ScopeEmitter from './event/ScopeEmitter';
 
 export default class TranslateService {
 
-  constructor($rootScope, $q, $log, $injector, options, staticTranslations) {
+  constructor($rootScope, $q, $log, $injector, options, presetTranslations) {
     // internals
     this.initialLanguage = options.preferredLanguage || 'en';
     this.preferredLanguage = this.initialLanguage;
@@ -23,7 +23,7 @@ export default class TranslateService {
     });
     this.scopeEmitter = new ScopeEmitter($rootScope);
     this.repository = new Repository(this.$q, this.$log, this.$injector, this.scopeEmitter, options.loader, options.loaderOptions);
-    this.repository.presetTranslations(staticTranslations);
+    this.repository.presetTranslations(presetTranslations);
     this.syncResolver = new SyncResolver(this.repository);
     this.asyncResolver = new AsyncResolver(this.repository);
     this.syncProvider = new SyncProvider(this.context, this.syncResolver);
@@ -36,6 +36,10 @@ export default class TranslateService {
     this.context = context;
     this.syncProvider = new SyncProvider(context, this.syncResolver);
     this.asyncProvider = new AsyncProvider(context, this.asyncResolver);
+  }
+
+  getActiveLanguage() {
+    return this.context.language;
   }
 
   sync(key, interpolationParams, interpolationId) {

@@ -4,7 +4,7 @@ export default class TranslateServiceProvider {
 
   constructor() {
     this.options = {};
-    this.staticTranslations = {};
+    this.presetTranslations = {};
   }
 
   preferLanguage(language) {
@@ -15,26 +15,15 @@ export default class TranslateServiceProvider {
     return this;
   }
 
-  useLanguage(language) {
-    this.options.usedLanguage = language;
-    if (this.service) {
-      this.service.useLanguage(language);
-    }
-    return this;
-  }
-
   useLoader(loader, options) {
     this.options.loader = loader;
     this.options.loaderOptions = options;
-    if (this.service) {
-      this.service.setLoader(loader, options);
-    }
     return this;
   }
 
   translations() {
     return new StaticTranslationsBuilder(this, (language, data) => {
-      this.staticTranslations[language] = data;
+      this.presetTranslations[language] = data;
     });
   }
 
@@ -65,8 +54,7 @@ export default class TranslateServiceProvider {
   }
 
   $get($rootScope, $q, $log, $injector) {
-    this.service = new TranslateService($rootScope, $q, $log, $injector, this.options, this.staticTranslations);
-    return this.service;
+    return new TranslateService($rootScope, $q, $log, $injector, this.options, this.presetTranslations);
   }
 }
 

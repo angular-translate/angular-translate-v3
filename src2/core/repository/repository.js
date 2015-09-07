@@ -20,10 +20,10 @@ export default class Repository {
     this.processedLanguages = {};
   }
 
-  presetTranslations(staticTranslations) {
-    Object.keys(staticTranslations)
+  presetTranslations(translations) {
+    Object.keys(translations)
       .map((language) => {
-        return this.uniformDataMapper.uniform(language, staticTranslations[language], {preset : true})
+        return this.uniformDataMapper.uniform(language, translations[language], {preset : true})
       })
       .forEach((entry) => {
         this.translations[entry.language] = entry;
@@ -181,7 +181,7 @@ export default class Repository {
         this.loaderManager
           .process(language)
           .then(({response}) => {
-            let entry = this.uniformDataMapper.uniform(language, response);
+            let entry = this.uniformDataMapper.uniform(language, response, {loader : true});
             if (typeof onBeforeApply === 'function') {
               onBeforeApply(entry);
             }

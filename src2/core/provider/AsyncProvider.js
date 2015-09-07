@@ -8,6 +8,10 @@ export default class AsyncProvider {
     this.resolver = resolver;
   }
 
+  getActiveLanguage() {
+    return this.context.language;
+  }
+
   provide(key, interpolationParams, interpolationId) {
     return this.provideByLanguage(this.context.language, key, interpolationParams, interpolationId);
   }
