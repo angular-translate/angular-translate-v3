@@ -2,7 +2,7 @@
   "author": "Pascal Precht",
   "name": "angular-translate",
   "description": "A translation module for AngularJS",
-  "version": "2.7.2",
+  "version": "3.0.0-alpha.1",
   "homepage": "http://github.com/angular-translate/angular-translate",
   "ignore": [],
   "repository": {
@@ -12,14 +12,14 @@
   "main": "./dist/angular-translate.js",
   "devDependencies": {
     "ngMidwayTester": "yearofmoo/ngMidwayTester",
-    "angular": "~1.2.26",
+    "angular": "~1.4.4",
     "angular-translate-interpolation-messageformat": "2.6.1",
-    "angular-mocks": "~1.2.26",
-    "angular-cookies": "~1.2.26",
-    "angular-sanitize": "~1.2.26"
+    "angular-mocks": "~1.4.4",
+    "angular-cookies": "~1.4.4",
+    "angular-sanitize": "~1.4.4"
   },
   "resolutions": {
-    "angular": "~1.2.26"
+    "angular": "~1.4.4"
   },
   "licenses": [
     {

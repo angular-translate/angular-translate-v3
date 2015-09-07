@@ -646,9 +646,61 @@ module.exports = function (grunt) {
       }
     },
 
-    'bower-install-simple': loadTestScopeConfigurations()
+    'bower-install-simple': loadTestScopeConfigurations(),
+
+
+    clean : {
+      dist : 'dist/',
+      temp : 'temp/'
+    },
+
+    babel : {
+      options : {
+        sourceMap : false,
+        sourceType : 'module'
+      },
+      src : {
+        expand : true,
+        cwd : 'src2/',
+        src : ['**/*.js'],
+        dest : 'temp/',
+        ext : '.js'
+      }
+    },
+
+    browserify : {
+      dist : {
+        options : {
+          browserifyOptions : {
+            fullPaths : false,
+            debug : false // TODO enable sourcemaps
+          },
+          transform : ['babelify', require('browserify-ngannotate')],
+          banner : '<%= meta.banner %>',
+          watch : true
+        },
+        files : {
+          'dist/angular-translate.js' : [
+            'src2/index.js'
+          ]
+        }
+      }
+    }
 
   });
+
+  // Building & releasing
+  grunt.registerTask('v3', [
+    'clean',
+    //'jshint',
+    //'karma:unit',
+    'browserify:dist',
+    //'concat:dist-withPolyfill',
+    // 'extract_sourcemap:dist',// TODO enable sourcemaps
+    // 'extract_sourcemap:dist-withPolyfill',// TODO enable sourcemaps
+    //'uglify:dist',
+    //'uglify:dist-withPolyfill'
+  ]);
 
 
   grunt.registerTask('default', ['jshint:all', 'karma']);
