@@ -1,4 +1,4 @@
-import {MODULE_NAME_PREFIX} from './../config';
+import {MODULE_NAME_BASE} from './../config';
 
 import TranslateComponentsServiceProvider from './translateComponents.service.provider';
 
@@ -9,8 +9,8 @@ import TranslateFilterFactory from './translate.filter';
 
 export default angular
 
-  .module(`${MODULE_NAME_PREFIX}.components`, [
-    `${MODULE_NAME_PREFIX}.core`
+  .module(`${MODULE_NAME_BASE}.components`, [
+    `${MODULE_NAME_BASE}.core`
   ])
 
   // Configurer for components

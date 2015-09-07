@@ -1,3 +1,3 @@
-const MODULE_NAME_PREFIX = 'pascalprecht.translate';
+const MODULE_NAME_BASE = 'pascalprecht.translate';
 
-export {MODULE_NAME_PREFIX};
+export {MODULE_NAME_BASE};

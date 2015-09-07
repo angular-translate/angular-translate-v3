@@ -1,4 +1,4 @@
-import {MODULE_NAME_PREFIX} from './../config';
+import {MODULE_NAME_BASE} from './../config';
 
 class $translateServiceProvider {
 
@@ -16,7 +16,7 @@ class $translateServiceProvider {
 
   $get($log, translate, translateComponents) {
 
-    $log.warn('angular-translate: Legacy/compatibility mode is ACTIVE!');
+    $log.warn(`${MODULE_NAME_BASE}: Legacy/compatibility mode is ACTIVE!`);
 
     let service = function (key, interpolationParams, interpolationId) {
       return translate.async(key, interpolationParams, interpolationId);
@@ -41,7 +41,9 @@ class $translateServiceProvider {
 
 export default angular
 
-  .module(`${MODULE_NAME_PREFIX}.compat`, [`${MODULE_NAME_PREFIX}`])
+  .module(`${MODULE_NAME_BASE}.compat`, [
+    `${MODULE_NAME_BASE}`
+  ])
 
   .provider('$translate', $translateServiceProvider)
 
