@@ -1,3 +1,5 @@
+import {MODULE_NAME_PREFIX} from './../config';
+
 class $translateServiceProvider {
 
   constructor() {
@@ -39,7 +41,7 @@ class $translateServiceProvider {
 
 export default angular
 
-  .module('ng-translate.compat', ['ng-translate'])
+  .module(`${MODULE_NAME_PREFIX}.compat`, [`${MODULE_NAME_PREFIX}`])
 
   .provider('$translate', $translateServiceProvider)
 

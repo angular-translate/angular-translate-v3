@@ -65,7 +65,7 @@
 <script src="../dist/angular-translate.js"></script>
 
 <script>
-  angular.module('app', ['ng-translate', 'ng-translate.compat'])
+  angular.module('app', ['pascalprecht.translate', 'pascalprecht.translate.compat'])
 
     .factory('customLoader', function ($q) {
       return function() {

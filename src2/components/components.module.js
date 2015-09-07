@@ -1,3 +1,5 @@
+import {MODULE_NAME_PREFIX} from './../config';
+
 import TranslateComponentsServiceProvider from './translateComponents.service.provider';
 
 import TranslateAttributeDirective from './translateAttribute.directive';
@@ -7,7 +9,9 @@ import TranslateFilterFactory from './translate.filter';
 
 export default angular
 
-  .module('ng-translate.components', ['ng-translate.core'])
+  .module(`${MODULE_NAME_PREFIX}.components`, [
+    `${MODULE_NAME_PREFIX}.core`
+  ])
 
   // Configurer for components
   .provider('translateComponents', TranslateComponentsServiceProvider)

@@ -1,6 +1,8 @@
+import {MODULE_NAME_PREFIX} from './config';
+
 export default angular
 
-  .module('ng-translate', [
+  .module(`${MODULE_NAME_PREFIX}`, [
     require('./core'),
     require('./components'),
     require('./compat')
