@@ -17,7 +17,7 @@ export default class SyncProvider {
   }
 
   provideByLanguage(language, key, interpolationParams, interpolationId) {
-    let single = typeof key === 'string';
+    let single = !angular.isArray(key);
     let keys = [].concat(key);
     let result = this.resolver.resolve(
       keys.map((key) => new Request({

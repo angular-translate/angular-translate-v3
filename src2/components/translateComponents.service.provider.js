@@ -6,6 +6,7 @@ export default class TranslateComponentsServiceProvider {
     this.options = {
       statefulFilter : true,
       directivePriority: 100,
+      directiveIsolatedScope: false,
       cloakClassName: 'translate-cloak'
     };
   }
@@ -25,6 +26,15 @@ export default class TranslateComponentsServiceProvider {
       return this;
     } else {
       return this.options.directivePriority;
+    }
+  }
+
+  directiveIsolatedScope(value) {
+    if (value !== undefined) {
+      this.options.directiveIsolatedScope = !(!value);
+      return this;
+    } else {
+      return this.options.directiveIsolatedScope;
     }
   }
 

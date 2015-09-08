@@ -35,21 +35,21 @@ export default class Repository {
   }
 
   getByKeyNow(request) {
-    this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}')`);
+    //this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}')`);
     let entry = this.translations[request.language];
     let _translation;
-    if (entry) {
+    if (entry && request.key !== undefined) {
       _translation = entry.translations[request.key];
     }
-    if (_translation !== undefined) {
-      this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}') => SUCCESS`);
+    if (_translation !== undefined && request.key !== '') {
+      //this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}') => SUCCESS`);
       return new Response({
         request : request,
         success : true,
         translation : _translation
       });
     } else {
-      this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}') => FAIL`);
+      //this.$log.debug(`Repository::getByKeyNow('${request.language}', '${request.key}') => FAIL`);
       return new Response({
         request : request,
         success : false,
@@ -59,7 +59,7 @@ export default class Repository {
   }
 
   getByKey(request) {
-    this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}')`);
+    //this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}')`);
     let requestLanguage = request.language;
 
     // will wait for loading just at the moment..
@@ -70,12 +70,21 @@ export default class Repository {
 
           if (entry !== undefined) {
             // translations for this language has been found
-            this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => SUCCESS`);
-            resolve(new Response({
-              request : request,
-              success : true,
-              translation : entry.translations[request.key]
-            }));
+            if (request.key !== undefined && request.key !== '') {
+              //this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => SUCCESS`);
+              resolve(new Response({
+                request : request,
+                success : true,
+                translation : entry.translations[request.key]
+              }));
+            } else {
+              //this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => FAIL`);
+              reject(new Response({
+                request : request,
+                success : false,
+                translation : undefined
+              }))
+            }
 
           } else if (this.processedLanguages[requestLanguage] === undefined) {
             // translations not found, because it has been not loaded yet
@@ -87,7 +96,7 @@ export default class Repository {
               })
               .catch(() => {
                 // loading translations failed, reject anyway
-                this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => FAIL`);
+                //this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => FAIL`);
                 reject(new Response({
                   request : request,
                   success : false,
@@ -97,7 +106,7 @@ export default class Repository {
 
           } else {
             // translations not found, but this language has been processed already
-            this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => FAIL`);
+            //this.$log.debug(`Repository::getByKey('${request.language}', '${request.key}') => FAIL`);
             reject(new Response({
               request : request,
               success : false,

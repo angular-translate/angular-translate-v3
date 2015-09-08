@@ -12,6 +12,10 @@ export default class TranslateComponentsService {
     return this.options.directivePriority;
   }
 
+  directiveIsolatedScope() {
+    return this.options.directiveIsolatedScope;
+  }
+
   cloakClassName() {
     return this.options.cloakClassName;
   }

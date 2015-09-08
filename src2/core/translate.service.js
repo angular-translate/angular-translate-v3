@@ -36,6 +36,7 @@ export default class TranslateService {
     this.context = context;
     this.syncProvider = new SyncProvider(context, this.syncResolver);
     this.asyncProvider = new AsyncProvider(context, this.asyncResolver);
+    this.scopeEmitter.emit('translate::language-changed', {language : context.language});
   }
 
   getActiveLanguage() {
@@ -47,7 +48,10 @@ export default class TranslateService {
   }
 
   async(key, interpolationParams, interpolationId) {
-    return this.asyncProvider.provide(key, interpolationParams, interpolationId).translation;
+    return this.asyncProvider.provide(key, interpolationParams, interpolationId)
+      .then((response) => {
+        return response.translation;
+      });
   }
 
   setLoader(loader, loaderOptions) {
