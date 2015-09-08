@@ -49,4 +49,12 @@ const TranslateCloakDirective = ($rootScope, translateComponents, translate) => 
   };
 };
 
+TranslateCloakDirective.onExtendOnly = ($rootScope, translateComponents, translate) => {
+  if (translateComponents.extendHtmlStandardElements()) {
+    return TranslateCloakDirective($rootScope, translateComponents, translate);
+  } else {
+    return {};
+  }
+};
+
 export default TranslateCloakDirective;

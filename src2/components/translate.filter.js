@@ -16,4 +16,12 @@ const TranslateFilterFactory = ($parse, translateComponents, translate) => {
   return translateFilter;
 };
 
+TranslateFilterFactory.onExtendOnly = ($parse, translateComponents, translate) => {
+  if (translateComponents.extendHtmlStandardElements()) {
+    return TranslateFilterFactory($parse, translateComponents, translate);
+  } else {
+    return {};
+  }
+};
+
 export default TranslateFilterFactory;

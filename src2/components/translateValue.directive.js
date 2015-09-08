@@ -46,4 +46,12 @@ const TranslateValueDirective = ($rootScope, $q, $interpolate, $compile, $parse,
 
 };
 
+TranslateValueDirective.onExtendOnly = ($rootScope, $q, $interpolate, $compile, $parse, translateComponents, translate) => {
+  if (translateComponents.extendHtmlStandardElements()) {
+    return TranslateValueDirective($rootScope, $q, $interpolate, $compile, $parse, translateComponents, translate);
+  } else {
+    return {};
+  }
+};
+
 export default TranslateValueDirective;

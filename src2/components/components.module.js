@@ -17,15 +17,19 @@ export default angular
   .provider('translateComponents', TranslateComponentsServiceProvider)
 
   // Standard directive for translating values
-  .directive('translate', TranslateValueDirective)
+  .directive('ppTranslate', TranslateValueDirective)
+  .directive('translate', TranslateValueDirective.onExtendOnly)
 
   // Directive for a cloak (until translations are ready)
-  .directive('translateCloak', TranslateCloakDirective)
+  .directive('ppTranslateCloak', TranslateCloakDirective)
+  .directive('translateCloak', TranslateCloakDirective.onExtendOnly)
 
   // Directive for translating element's attributes
-  .directive('translateAttr', TranslateAttributeDirective)
+  .directive('ppTranslateAttr', TranslateAttributeDirective)
+  .directive('translateAttr', TranslateAttributeDirective.onExtendOnly)
 
   // Standard filter
-  .filter('translate', TranslateFilterFactory)
+  .filter('ppTranslate', TranslateFilterFactory)
+  .filter('translate', TranslateFilterFactory.onExtendOnly)
 
   .name;

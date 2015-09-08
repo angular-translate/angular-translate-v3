@@ -4,6 +4,10 @@ export default class TranslateComponentsService {
     this.options = options;
   }
 
+  extendHtmlStandardElements() {
+    return this.options.extendHtmlStandardElements;
+  }
+
   statefulFilter() {
     return this.options.statefulFilter;
   }

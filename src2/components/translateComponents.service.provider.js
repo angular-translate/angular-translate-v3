@@ -4,11 +4,21 @@ export default class TranslateComponentsServiceProvider {
 
   constructor() {
     this.options = {
+      extendHtmlStandardElements : true,
       statefulFilter : true,
-      directivePriority: 100,
-      directiveIsolatedScope: false,
-      cloakClassName: 'translate-cloak'
+      directivePriority : 100,
+      directiveIsolatedScope : false,
+      cloakClassName : 'translate-cloak'
     };
+  }
+
+  extendHtmlStandardElements(value) {
+    if (value !== undefined) {
+      this.options.extendHtmlStandardElements = !(!value);
+      return this;
+    } else {
+      return this.options.extendHtmlStandardElements;
+    }
   }
 
   statefulFilter(value) {
