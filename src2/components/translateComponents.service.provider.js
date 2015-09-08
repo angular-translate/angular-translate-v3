@@ -22,7 +22,7 @@ export default class TranslateComponentsServiceProvider {
 
   directivePriority(value) {
     if (value !== undefined) {
-      this.options.directivePriority = !(!value);
+      this.options.directivePriority = value;
       return this;
     } else {
       return this.options.directivePriority;
@@ -40,7 +40,7 @@ export default class TranslateComponentsServiceProvider {
 
   cloakClassName(value) {
     if (value !== undefined) {
-      this.options.cloakClassName = !(!value);
+      this.options.cloakClassName = value;
       return this;
     } else {
       return this.options.cloakClassName;
