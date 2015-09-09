@@ -17,13 +17,9 @@ export default class AsyncResolver extends BaseResolver {
       .map((promise) => {
         return promise
           .then((response) => {
-            if (response.success && response.translation[0] === '@') {
-              return this.resolve(new Request({
-                language : response.request.language,
-                key : response.translation.substring(1),
-                interpolationParams : response.request.interpolationParams,
-                interpolationId : response.request.interpolationId
-              }));
+            let alternativeResponse = this.resolveOnError(response);
+            if (alternativeResponse) {
+              return alternativeResponse;
             }
             return response;
           });
@@ -50,6 +46,15 @@ export default class AsyncResolver extends BaseResolver {
             return response;
           });
       });
+  }
+
+  resolveOnError(response) {
+    for (let strategy of this.alternativeStrategies) {
+      let request = strategy.buildAlternativeRequest(response);
+      if (request) {
+        return this.resolve(request);
+      }
+    }
   }
 
 }
