@@ -1,3 +1,4 @@
+/* @ngInject */
 const TranslateFilterFactory = ($parse, translateComponents, translate) => {
 
   let translateFilter = function (translationId, interpolateParams, interpolation) {
@@ -16,6 +17,7 @@ const TranslateFilterFactory = ($parse, translateComponents, translate) => {
   return translateFilter;
 };
 
+/* @ngInject */
 TranslateFilterFactory.onExtendOnly = ($parse, translateComponents, translate) => {
   if (translateComponents.extendHtmlStandardElements()) {
     return TranslateFilterFactory($parse, translateComponents, translate);

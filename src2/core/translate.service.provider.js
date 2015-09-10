@@ -2,6 +2,7 @@ import TranslateService from './translate.service';
 
 export default class TranslateServiceProvider {
 
+  /* @ngInject */
   constructor() {
     this.options = {};
     this.presetTranslations = {};
@@ -53,6 +54,7 @@ export default class TranslateServiceProvider {
     return this.useLoader('translateHttpLoader', loaderOptions);
   }
 
+  /* @ngInject */
   $get($rootScope, $q, $log, $injector) {
     return new TranslateService($rootScope, $q, $log, $injector, this.options, this.presetTranslations);
   }

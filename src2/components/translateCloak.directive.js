@@ -19,6 +19,7 @@
  *                                  or hiding the cloak. Basically it relies on the translation
  *                                  resolve.
  */
+/* @ngInject */
 const TranslateCloakDirective = ($rootScope, translateComponents, translate) => {
   return {
     compile : (element) => {
@@ -49,6 +50,7 @@ const TranslateCloakDirective = ($rootScope, translateComponents, translate) => 
   };
 };
 
+/* @ngInject */
 TranslateCloakDirective.onExtendOnly = ($rootScope, translateComponents, translate) => {
   if (translateComponents.extendHtmlStandardElements()) {
     return TranslateCloakDirective($rootScope, translateComponents, translate);

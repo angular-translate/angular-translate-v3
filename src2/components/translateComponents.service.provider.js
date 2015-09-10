@@ -2,6 +2,7 @@ import TranslateComponentsService from './translateComponents.service';
 
 export default class TranslateComponentsServiceProvider {
 
+  /* @ngInject */
   constructor() {
     this.options = {
       extendHtmlStandardElements : true,
@@ -57,6 +58,7 @@ export default class TranslateComponentsServiceProvider {
     }
   }
 
+  /* @ngInject */
   $get() {
     this.service = new TranslateComponentsService(this.options);
     return this.service;

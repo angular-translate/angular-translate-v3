@@ -1,3 +1,4 @@
+/* @ngInject */
 const TranslateValueDirective = ($rootScope, $q, $interpolate, $compile, $parse, translateComponents, translate) => {
 
   let initInterpolationParams = (scope, interpolateParams, $attrs, tElement, tAttrs) => {
@@ -46,6 +47,7 @@ const TranslateValueDirective = ($rootScope, $q, $interpolate, $compile, $parse,
 
 };
 
+/* @ngInject */
 TranslateValueDirective.onExtendOnly = ($rootScope, $q, $interpolate, $compile, $parse, translateComponents, translate) => {
   if (translateComponents.extendHtmlStandardElements()) {
     return TranslateValueDirective($rootScope, $q, $interpolate, $compile, $parse, translateComponents, translate);

@@ -8,6 +8,7 @@ import ScopeEmitter from './event/ScopeEmitter';
 
 export default class TranslateService {
 
+  /* @ngInject */
   constructor($rootScope, $q, $log, $injector, options, presetTranslations) {
     // internals
     this.initialLanguage = options.preferredLanguage || 'en';

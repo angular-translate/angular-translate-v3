@@ -2,6 +2,7 @@ import {MODULE_NAME_BASE} from './../config';
 
 class $translateServiceProvider {
 
+  /* @ngInject */
   constructor() {
   }
 
@@ -14,6 +15,7 @@ class $translateServiceProvider {
     }
   }
 
+  /* @ngInject */
   $get($log, translate, translateComponents) {
 
     $log.warn(`${MODULE_NAME_BASE}: Legacy/compatibility mode is ACTIVE!`);
